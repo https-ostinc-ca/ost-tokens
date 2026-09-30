@@ -1,0 +1,38 @@
+{
+  "name": "@ost/tokens",
+  "version": "1.0.0",
+  "description": "One Stop Telecom Inc. design tokens — colors, type, radius — shared by every OST frontend.",
+  "private": true,
+  "type": "module",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    },
+    "./tailwind-preset": {
+      "types": "./dist/tailwind-preset.d.ts",
+      "import": "./dist/tailwind-preset.js",
+      "require": "./dist/tailwind-preset.cjs"
+    },
+    "./tokens.css": "./dist/tokens.css"
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsup src/index.ts src/tailwind-preset.ts --format esm,cjs --dts --clean && tsx scripts/build-css.ts",
+    "test": "vitest run",
+    "typecheck": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "@types/node": "^22.20.4",
+    "tsup": "^8.3.0",
+    "tsx": "^4.19.0",
+    "typescript": "^5.6.0",
+    "vitest": "^2.1.0"
+  }
+}
