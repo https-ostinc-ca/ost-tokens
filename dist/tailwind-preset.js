@@ -8,10 +8,11 @@ import {
 } from "./chunk-7YD7M6EE.js";
 
 // src/tailwind-preset.ts
-var colors = Object.fromEntries(colorRoles.map((role) => [role, `rgb(var(${cssVar(role)}) / <alpha-value>)`]));
+var kebab = (s) => s.replace(/[A-Z]/g, (c) => `-${c.toLowerCase()}`);
+var colors = Object.fromEntries(colorRoles.map((role) => [kebab(role), `rgb(var(${cssVar(role)}) / <alpha-value>)`]));
 var fontSize = Object.fromEntries(
   Object.entries(typeScale).map(([name, t]) => [
-    name,
+    kebab(name),
     [t.size, { lineHeight: t.lineHeight, fontWeight: String(t.weight), ..."letterSpacing" in t ? { letterSpacing: t.letterSpacing } : {} }]
   ])
 );

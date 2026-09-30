@@ -7,11 +7,14 @@ import { fonts, typeScale, radius, layout } from './scale';
 // Usage: `presets: [require('@ost/tokens/tailwind-preset')]` and import
 // '@ost/tokens/tokens.css' once at the app root.
 
-const colors = Object.fromEntries(colorRoles.map((role) => [role, `rgb(var(${cssVar(role)}) / <alpha-value>)`]));
+// Class names are kebab-case to match the CSS vars: `text-text-mid`, `bg-on-action`, `text-body-sm`.
+const kebab = (s: string) => s.replace(/[A-Z]/g, (c) => `-${c.toLowerCase()}`);
+
+const colors = Object.fromEntries(colorRoles.map((role) => [kebab(role), `rgb(var(${cssVar(role)}) / <alpha-value>)`]));
 
 const fontSize = Object.fromEntries(
   Object.entries(typeScale).map(([name, t]) => [
-    name,
+    kebab(name),
     [t.size, { lineHeight: t.lineHeight, fontWeight: String(t.weight), ...('letterSpacing' in t ? { letterSpacing: t.letterSpacing } : {}) }],
   ]),
 );
